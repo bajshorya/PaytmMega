@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+
 const prisma = new PrismaClient();
 
 async function main() {
@@ -12,11 +13,10 @@ async function main() {
       name: "alice",
       Balance: {
         create: {
-          amount: 20000,
-          locked: 0,
+          amount: 20000, // Create a Balance for the user
         },
       },
-      OnRampTransaction: {
+      OnRampTransactions: {
         create: {
           startTime: new Date(),
           status: "Success",
@@ -27,6 +27,7 @@ async function main() {
       },
     },
   });
+
   const bob = await prisma.user.upsert({
     where: { number: "2222222222" },
     update: {},
@@ -37,10 +38,9 @@ async function main() {
       Balance: {
         create: {
           amount: 2000,
-          locked: 0,
         },
       },
-      OnRampTransaction: {
+      OnRampTransactions: {
         create: {
           startTime: new Date(),
           status: "Failure",
@@ -51,8 +51,10 @@ async function main() {
       },
     },
   });
+
   console.log({ alice, bob });
 }
+
 main()
   .then(async () => {
     await prisma.$disconnect();
