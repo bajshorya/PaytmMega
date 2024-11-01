@@ -18,14 +18,16 @@ export const SidebarItem = ({
   const selected = pathname ? pathname === href : false;
 
   return (
-    <div
-      className={`flex items-center cursor-pointer p-2 pl-8 ${
-        selected ? "text-[#6a51a6] font-bold" : "text-slate-500"
-      }`}
-      onClick={() => router.push(href)}
-    >
-      <div className="pr-2">{icon}</div>
-      <div>{title}</div>
+    <div>
+      <div
+        className={`flex items-center cursor-pointer p-2 pl-8 ${
+          selected ? "text-[#6a51a6] font-bold" : "text-slate-500"
+        }`}
+        onClick={() => router.push(href)}
+      >
+        <div className="pr-2">{icon}</div>
+        <div>{title}</div>
+      </div>
     </div>
   );
 };
