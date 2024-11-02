@@ -14,4 +14,6 @@ if (process.env.NODE_ENV !== "production") {
   globalThis.prismaGlobal = prisma;
 }
 
+// Export prisma as default and PrismaClient explicitly
 export default prisma;
+export { PrismaClient };

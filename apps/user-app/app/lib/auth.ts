@@ -48,8 +48,8 @@ export const authOptions = {
 
           return {
             id: user.id.toString(),
-            name: user.name,
-            email: user.number,
+            name: user.name || "Unnamed User",
+            phone: user.number || "",
           };
         } catch (e) {
           console.error(e);
