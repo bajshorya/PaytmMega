@@ -29,12 +29,12 @@ jobs:
       - name: Verify Pushed Image
         run: docker pull shoryabaj/paytm:latest
 
-      - name: Deploy to EC2
+      - name: Deploy with SSH
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY_NOPASS }}
           script: |
             sudo docker pull shorybaj/paytm:latest
             sudo docker stop paytm || true
