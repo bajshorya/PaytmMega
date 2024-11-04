@@ -32,9 +32,9 @@ jobs:
       - name: Deploy with SSH
         uses: appleboy/ssh-action@v0.1.6
         with:
-          host: ${{ secrets.SSH_HOST }}
+          host: ${{ secrets.SSH_HOST }} 
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY_NOPASS }}
+          key: ${{ secrets.SSH_KEY }} 
           script: |
             sudo docker pull shorybaj/paytm:latest
             sudo docker stop paytm || true
