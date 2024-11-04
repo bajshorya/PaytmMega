@@ -24,19 +24,19 @@ jobs:
           context: .
           file: ./docker/Dockerfile.user
           push: true
-          tags: shoryabaj/paytm:latest
+          tags: shoryabaj/paytm:latest # Replace with your Docker Hub username and repository
 
       - name: Verify Pushed Image
-        run: docker pull shoryabaj/paytm:latest
+        run: docker pull shoryabaj/paytm:latest # Replace with your Docker Hub username and repository
 
-      - name: Deploy with SSH
-        uses: appleboy/ssh-action@v0.1.6
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }} 
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }} 
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo docker pull shorybaj/paytm:latest
+            sudo docker pull shoryabaj/paytm:latest
             sudo docker stop paytm || true
             sudo docker rm paytm || true
-            sudo docker run -d --name paytm -p 3005:3000 shorybaj/paytm:latest
+            sudo docker run -d --name paytm -p 3005:3000 shoryabaj/paytm:latest
